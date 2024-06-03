@@ -28,7 +28,7 @@ const Header = () => {
           <div></div>
 
           <menu className={`${active ? "flex flex-col gap-4" : "hidden"}  lg:flex justify-center`}>
-          {links.map(link=>( <Link
+          {links.map((link,index)=>( <Link key={index}
               href={link.url}
               className="text-gray-600 hover:text-orange-400 p-2 pb-0 text-sm"
             >
