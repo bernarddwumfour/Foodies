@@ -4,7 +4,7 @@ import React from 'react'
 const page = () => {
   return (
     <main>
-    <div className="flex justify-center w-full px-2 lg:px-12 py-48">
+    <div className="flex justify-center w-full px-2 lg:px-12 py-24 lg:py-48">
       <form className="flex flex-col items-center w-full max-w-xl shadow-lg bg-white rounded-lg">
           <p className="text-center text-orange-300 font-bold  text-lg">Create a New Account</p>
         <div className="flex flex-col gap-6 w-full justify-center px-4 py-8">

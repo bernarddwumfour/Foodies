@@ -1,19 +1,20 @@
 import Link from "next/link";
 import React from "react";
+import { FaCartPlus, FaArrowRightToBracket } from "react-icons/fa6";
+import Navlinks from "./Navlinks";
 
 const Header = () => {
-
-  type links ={link:string,url:string}[]
+  type links = { link: string; url: string }[];
 
   let active = false;
 
-  let links:links = [
-    {link :"Home",url : "/"},
-    {link :"About",url : "/about"},
-    {link :"Our Menu",url : "/menu"},
-    {link :"FAQ",url : "/FAQ"},
-    {link :"Contact",url : "/contact"},
-  ]
+  let links: links = [
+    { link: "Home", url: "/" },
+    { link: "About", url: "/about" },
+    { link: "Our Menu", url: "/menu" },
+    { link: "FAQ", url: "/FAQ" },
+    { link: "Contact", url: "/contact" },
+  ];
 
   return (
     <header className="bg-white shadow-lg fixed top-0 left-0 z-20 w-full">
@@ -24,34 +25,41 @@ const Header = () => {
         >
           Foodies
         </Link>
-        <div className={`flex justify-between ${active ? " flex-col items-start gap-12 px-4 pb-8" : " px-12"}`}>
-          <div></div>
+      <div className="flex justify-between">
 
-          <menu className={`${active ? "flex flex-col gap-4" : "hidden"}  lg:flex justify-center`}>
-          {links.map((link,index)=>( <Link key={index}
+      <div className="hidden lg:block w-32"></div>
+
+
+      <Navlinks>
+          {links.map((link, index) => (
+            <Link
+              key={index}
               href={link.url}
               className="text-gray-600 hover:text-orange-400 p-2 pb-0 text-sm"
             >
               {link.link}
-            </Link>))}
-           
-          </menu>
+            </Link>
+          ))}
+        </Navlinks>
 
-          <menu className="flex justify-center">
-            <Link
-              href="/cart"
-              className="text-gray-600 hover:text-orange-400 p-2 pb-0 text-sm"
-            >
-              #
-            </Link>
-            <Link
-              href="/login"
-              className="text-gray-600 hover:text-orange-400 p-2 pb-0 text-sm"
-            >
-              #
-            </Link>
-          </menu>
-        </div>
+        <menu className="flex justify-center gap-2 pe-12 self-end">
+          <Link
+            href="/cart"
+            className="text-gray-600 hover:text-orange-400 p-2 pb-0 text-lg"
+          >
+            <FaCartPlus />
+          </Link>
+          <Link
+            href="/login"
+            className="text-gray-600 hover:text-orange-400 p-2 pb-0 text-sm"
+          >
+            <FaArrowRightToBracket />
+          </Link>
+
+          
+        </menu>
+        
+      </div>
       </nav>
     </header>
   );
