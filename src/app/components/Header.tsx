@@ -2,9 +2,10 @@ import Link from "next/link";
 import React from "react";
 import { FaCartPlus, FaArrowRightToBracket } from "react-icons/fa6";
 import Navlinks from "./Navlinks";
+import Pagemessage from "./Pagemessage";
+import Cartlogo from "./Cartlogo";
 
 const Header = () => {
-  type links = { link: string; url: string }[];
 
   let active = false;
 
@@ -14,9 +15,11 @@ const Header = () => {
     { link: "Our Menu", url: "/menu" },
     { link: "FAQ", url: "/FAQ" },
     { link: "Contact", url: "/contact" },
+    { link: "Admin", url: "/admin/dashboard" },
   ];
 
   return (
+    <>
     <header className="bg-white shadow-lg fixed top-0 left-0 z-20 w-full">
       <nav className="lg:p-4 p-2 flex flex-col justify-center">
         <Link
@@ -43,15 +46,10 @@ const Header = () => {
         </Navlinks>
 
         <menu className="flex justify-center gap-2 pe-12 self-end">
-          <Link
-            href="/cart"
-            className="text-gray-600 hover:text-orange-400 p-2 pb-0 text-lg"
-          >
-            <FaCartPlus />
-          </Link>
+         <Cartlogo/>
           <Link
             href="/login"
-            className="text-gray-600 hover:text-orange-400 p-2 pb-0 text-sm"
+            className="text-gray-600 hover:text-orange-400 p-2 pb-0 text-lg"
           >
             <FaArrowRightToBracket />
           </Link>
@@ -62,6 +60,8 @@ const Header = () => {
       </div>
       </nav>
     </header>
+    <Pagemessage/>
+    </>
   );
 };
 

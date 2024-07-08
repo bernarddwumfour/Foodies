@@ -1,7 +1,67 @@
+import Product from "@/app/components/Product";
 import Image from "next/image";
 import React from "react";
 
 const page = () => {
+  let products :product[] = [
+    {
+      id : 1 ,
+      name : "Jollof Rice",
+      price : 12 ,
+      description : "Description For jollof Rice", 
+      image : "food1"
+    },
+    {
+      id : 2 ,
+      name : "Plain Rice",
+      price : 15 ,
+      description : "Description For plain Rice", 
+      image : "food2"
+    },
+    {
+      id : 3 ,
+      name : "Fried Rice",
+      price : 18 ,
+      description : "Description For Fried Rice", 
+      image : "food3"
+    },
+    {
+      id : 4 ,
+      name : "Waakye",
+      price : 21,
+      description : "Description For Waakye", 
+      image : "food4"
+    },
+    {
+      id : 5 ,
+      name : "Fries",
+      price : 11 ,
+      description : "Description For Fries", 
+      image : "food4"
+    },
+    {
+      id : 6 ,
+      name : "Noodles",
+      price : 15 ,
+      description : "Description For Noodles", 
+      image : "food3"
+    },
+    {
+      id : 7 ,
+      name : "Salad",
+      price : 13 ,
+      description : "Description For Salad", 
+      image : "food2"
+    },
+    {
+      id : 8 ,
+      name : "Sphagetti",
+      price : 7,
+      description : "Description For Sphagetti", 
+      image : "food1"
+    },
+
+  ]
   return (
     <main className="">
       <div className=" bg-gray-200 lg:py-24 py-16 mt-24 px-4 lg:px-12 flex flex-col items-center relative">
@@ -21,91 +81,12 @@ const page = () => {
         </div>
       </div>
 
-      <div className="menugrid lg:grid-cols-3 2xl:grid-cols-4 grid sm:grid-cols-2  md:grid-cols-2 py-12 gap-2 lg:gap-4 px-2 lg:px-4 2xl:px-12">
-            <div className="product">
-              <div className="image bg-gray-200 h-64 relative">
-                 <Image
-            src={"/food1.jpg"}
-            className="absolute z-0 object-cover"
-            alt="foodimage"
-            fill
-          />
-              </div>
-              <div className="details p-4">
-                <p className="uppercase text-gray-700 font-semibold">
-                  Food name here
-                </p>
-                <p className="text-sm text-gray-600 py-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime consectetur iste facere.
-                </p>
-                <p className="text-gray-700">$20.00</p>
-              </div>
-            </div>
-
-            <div className="product">
-              <div className="image bg-gray-200 h-64 relative">
-                 <Image
-            src={"/food2.jpg"}
-            className="absolute z-0 object-cover"
-            alt="foodimage"
-            fill
-          />
-              </div>
-              <div className="details p-4">
-                <p className="uppercase text-gray-700 font-semibold">
-                  Food name here
-                </p>
-                <p className="text-sm text-gray-600 py-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime consectetur iste facere.
-                </p>
-                <p className="text-gray-700">$20.00</p>
-              </div>
-            </div>
-
-            <div className="product">
-              <div className="image bg-gray-200 h-64 relative">
-                 <Image
-            src={"/food3.jpg"}
-            className="absolute z-0 object-cover"
-            alt="foodimage"
-            fill
-          />
-              </div>
-              <div className="details p-4">
-                <p className="uppercase text-gray-700 font-semibold">
-                  Food name here
-                </p>
-                <p className="text-sm text-gray-600 py-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime consectetur iste facere.
-                </p>
-                <p className="text-gray-700">$20.00</p>
-              </div>
-            </div>
-
-            <div className="product">
-              <div className="image bg-gray-200 h-64 relative">
-                 <Image
-            src={"/food4.jpg"}
-            className="absolute z-0 object-cover"
-            alt="foodimage"
-            fill
-          />
-              </div>
-              <div className="details p-4">
-                <p className="uppercase text-gray-700 font-semibold">
-                  Food name here
-                </p>
-                <p className="text-sm text-gray-600 py-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime consectetur iste facere.
-                </p>
-                <p className="text-gray-700">$20.00</p>
-              </div>
-            </div>
-          </div>
+      <div className="menugrid lg:grid-cols-3 2xl:grid-cols-4 grid sm:grid-cols-2  md:grid-cols-2 py-32 gap-2 lg:gap-4 px-2 lg:px-4 2xl:px-12">
+        {products &&
+          products.map((product) => (
+            <Product key={product.id} product={product} />
+          ))}
+      </div>
     </main>
   );
 };

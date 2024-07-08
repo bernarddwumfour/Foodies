@@ -1,7 +1,30 @@
 import Image from "next/image";
 import Link from "next/link";
+import Product from "./components/Product";
 
-export default function Home() {
+let getproducts = async () => {
+  try {
+    let res = await fetch("http://127.0.0.1:3000/api/products");
+
+    if (!res.ok) {
+      console.log("Unable to fetch");
+      return undefined;
+    }
+    let data = await res.json();
+    return data;
+  } catch (err) {
+    console.log("Unable to fetch");
+    return undefined;
+  }
+};
+
+export default async function Home() {
+  type res = {
+    products:product[]
+  }
+  let {products}:res = await getproducts();
+  console.log(products);
+
   return (
     <>
       <main className="">
@@ -26,7 +49,7 @@ export default function Home() {
             </p>
             <a
               href="/menu"
-              className="p-3 px-6 bg-orange-300 text-white text-sm w-fit inline-block"
+              className="p-3 px-6 bg-orange-400 text-white text-sm w-fit inline-block"
             >
               Order Now
             </a>
@@ -35,19 +58,21 @@ export default function Home() {
 
         {/* About Section */}
         <div id="about" className="py-24 px-2 lg:px-8">
-          <h4 className="heading text-center text-orange-400">Lorem ipsum dolor sit.</h4>
+          <h4 className="heading text-center text-orange-400">
+            Lorem ipsum dolor sit.
+          </h4>
           <h2 className="lg:text-4xl text-2xl uppercase font-extralight lg:pt-4 pt-2 text-center">
             Lorem ipsum dolor sit.
           </h2>
 
           <div className="flex flex-col lg:flex-row justify-between gap-8 py-16 items-center">
             <div className="image bg-gray-200 w-full lg:w-1/2 h-72 lg:h-96 relative">
-            <Image
-            src={"/aboutimage.jpg"}
-            className="absolute z-0 object-cover"
-            alt="heroimage"
-            fill
-          />
+              <Image
+                src={"/aboutimage.jpg"}
+                className="absolute z-0 object-cover"
+                alt="heroimage"
+                fill
+              />
             </div>
             <div className="lg:p-12 p-4 w-full lg:w-1/2  text-gray-600 text-sm lg:text-base lg:leading-8">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
@@ -55,10 +80,11 @@ export default function Home() {
               fugiat illum ipsum, corrupti iusto voluptatibus similique ullam
               possimus facere animi impedit, reprehenderit repellat aperiam
               porro asperiores sit, temporibus neque eius sed! Deserunt, illum
-              incidunt dolor cupiditate enim id. <br /><br />
+              incidunt dolor cupiditate enim id. <br />
+              <br />
               <Link
                 href="/about"
-                className="p-3 px-6 bg-orange-300 text-white text-sm w-fit inline-block"
+                className="p-3 px-6 bg-orange-400 text-white text-sm w-fit inline-block"
               >
                 Learn more
               </Link>
@@ -72,203 +98,44 @@ export default function Home() {
           id="banner"
           className=" bg-gray-200 relative py-48 px-2 lg:px-12 flex justify-center"
         >
-           <Image
+          <Image
             src={"/banner1.jpg"}
             className="absolute z-0 object-cover brightness-50"
             alt="heroimage"
             fill
           />
-      <div className="z-10 flex flex-col items-center">
-      <p className=" max-w-screen-xl text-neutral-300 text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Q
-          </p>
-          <h1 className="lg:text-5xl text-2xl font-semibold text-center py-4 text-white uppercase">
+          <div className="z-[2] flex flex-col items-center">
+            <p className=" max-w-screen-xl text-neutral-300 text-center">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Q
+            </p>
+            <h1 className="lg:text-5xl text-2xl font-semibold text-center py-4 text-white uppercase">
               Lorem ipsum dolor
             </h1>
-            <a href="#" className="p-3 px-6 bg-orange-300 text-white text-sm w-fit inline-block">
-            Order Now
-          </a>
-      </div>
+            <a
+              href="#"
+              className="p-3 px-6 bg-orange-400 text-white text-sm w-fit inline-block"
+            >
+              Order Now
+            </a>
+          </div>
         </div>
 
         {/* menu section */}
         <div id="menu" className="py-24 lg:px-8 px-2">
-          <h4 className="heading text-center text-orange-400">Lorem ipsum dolor sit.</h4>
+          <h4 className="heading text-center text-orange-400">
+            Lorem ipsum dolor sit.
+          </h4>
           <h2 className="lg:text-4xl text-2xl uppercase font-extralight lg:pt-4 pt-2 text-center">
             Lorem ipsum dolor sit.
           </h2>
 
           <div className="menugrid lg:grid-cols-3 2xl:grid-cols-4 grid sm:grid-cols-2  md:grid-cols-2 py-12 gap-2 lg:gap-4">
-            <div className="product">
-              <div className="image bg-gray-200 h-64 relative">
-                 <Image
-            src={"/food1.jpg"}
-            className="absolute z-0 object-cover"
-            alt="foodimage"
-            fill
-          />
-              </div>
-              <div className="details p-4">
-                <p className="uppercase text-gray-700 font-semibold">
-                  Food name here
-                </p>
-                <p className="text-sm text-gray-600 py-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime consectetur iste facere.
-                </p>
-                <p className="text-gray-700">$20.00</p>
-              </div>
-            </div>
-
-            <div className="product">
-              <div className="image bg-gray-200 h-64 relative">
-                 <Image
-            src={"/food2.jpg"}
-            className="absolute z-0 object-cover"
-            alt="foodimage"
-            fill
-          />
-              </div>
-              <div className="details p-4">
-                <p className="uppercase text-gray-700 font-semibold">
-                  Food name here
-                </p>
-                <p className="text-sm text-gray-600 py-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime consectetur iste facere.
-                </p>
-                <p className="text-gray-700">$20.00</p>
-              </div>
-            </div>
-
-            <div className="product">
-              <div className="image bg-gray-200 h-64 relative">
-                 <Image
-            src={"/food3.jpg"}
-            className="absolute z-0 object-cover"
-            alt="foodimage"
-            fill
-          />
-              </div>
-              <div className="details p-4">
-                <p className="uppercase text-gray-700 font-semibold">
-                  Food name here
-                </p>
-                <p className="text-sm text-gray-600 py-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime consectetur iste facere.
-                </p>
-                <p className="text-gray-700">$20.00</p>
-              </div>
-            </div>
-
-            <div className="product">
-              <div className="image bg-gray-200 h-64 relative">
-                 <Image
-            src={"/food4.jpg"}
-            className="absolute z-0 object-cover"
-            alt="foodimage"
-            fill
-          />
-              </div>
-              <div className="details p-4">
-                <p className="uppercase text-gray-700 font-semibold">
-                  Food name here
-                </p>
-                <p className="text-sm text-gray-600 py-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime consectetur iste facere.
-                </p>
-                <p className="text-gray-700">$20.00</p>
-              </div>
-            </div>
+            {products &&
+              products.length > 0 &&
+              products.map((product) => (
+                <Product key={product.id} product={product} />
+              ))}
           </div>
-          <div className="menugrid lg:grid-cols-3 2xl:grid-cols-4 grid sm:grid-cols-2  md:grid-cols-2 py-12 gap-2 lg:gap-4">
-            <div className="product">
-              <div className="image bg-gray-200 h-64 relative">
-                 <Image
-            src={"/food1.jpg"}
-            className="absolute z-0 object-cover"
-            alt="foodimage"
-            fill
-          />
-              </div>
-              <div className="details p-4">
-                <p className="uppercase text-gray-700 font-semibold">
-                  Food name here
-                </p>
-                <p className="text-sm text-gray-600 py-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime consectetur iste facere.
-                </p>
-                <p className="text-gray-700">$20.00</p>
-              </div>
-            </div>
-
-            <div className="product">
-              <div className="image bg-gray-200 h-64 relative">
-                 <Image
-            src={"/food2.jpg"}
-            className="absolute z-0 object-cover"
-            alt="foodimage"
-            fill
-          />
-              </div>
-              <div className="details p-4">
-                <p className="uppercase text-gray-700 font-semibold">
-                  Food name here
-                </p>
-                <p className="text-sm text-gray-600 py-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime consectetur iste facere.
-                </p>
-                <p className="text-gray-700">$20.00</p>
-              </div>
-            </div>
-
-            <div className="product">
-              <div className="image bg-gray-200 h-64 relative">
-                 <Image
-            src={"/food3.jpg"}
-            className="absolute z-0 object-cover"
-            alt="foodimage"
-            fill
-          />
-              </div>
-              <div className="details p-4">
-                <p className="uppercase text-gray-700 font-semibold">
-                  Food name here
-                </p>
-                <p className="text-sm text-gray-600 py-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime consectetur iste facere.
-                </p>
-                <p className="text-gray-700">$20.00</p>
-              </div>
-            </div>
-
-            <div className="product">
-              <div className="image bg-gray-200 h-64 relative">
-                 <Image
-            src={"/food4.jpg"}
-            className="absolute z-0 object-cover"
-            alt="foodimage"
-            fill
-          />
-              </div>
-              <div className="details p-4">
-                <p className="uppercase text-gray-700 font-semibold">
-                  Food name here
-                </p>
-                <p className="text-sm text-gray-600 py-2">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime consectetur iste facere.
-                </p>
-                <p className="text-gray-700">$20.00</p>
-              </div>
-            </div>
-          </div>
-
         </div>
 
         {/* Second Banner */}
@@ -276,26 +143,27 @@ export default function Home() {
           id="banner"
           className=" bg-gray-200 relative py-48 px-2 lg:px-12 flex justify-center"
         >
-           <Image
+          <Image
             src={"/banner2.jpg"}
             className="absolute z-0 object-cover brightness-50"
             alt="heroimage"
             fill
           />
-      <div className="z-10 flex flex-col items-center">
-      <p className=" max-w-screen-xl text-neutral-300 text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Q
-          </p>
-          {/* <h1 className="text-5xl font-semibold text-center py-4 text-white uppercase">
+          <div className="z-[2] flex flex-col items-center">
+            <p className=" max-w-screen-xl text-neutral-300 text-center">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Q
+            </p>
+            {/* <h1 className="text-5xl font-semibold text-center py-4 text-white uppercase">
               Lorem ipsum dolor
             </h1> */}
-      </div>
+          </div>
         </div>
-
 
         {/* Order Section */}
         <div id="order" className="py-24">
-          <h4 className="heading text-center text-orange-400">Lorem ipsum dolor sit.</h4>
+          <h4 className="heading text-center text-orange-400">
+            Lorem ipsum dolor sit.
+          </h4>
           <h2 className="lg:text-4xl text-2xl uppercase font-extralight lg:pt-4 pt-2 text-center">
             Lorem ipsum dolor sit.
           </h2>
@@ -338,7 +206,7 @@ export default function Home() {
                 </label>
               </div>
             </div>
-            <button className="p-4 px-6 bg-orange-300 text-white text-sm w-fit inline-block border-none outline-none">
+            <button className="p-4 px-6 bg-orange-400 text-white text-sm w-fit inline-block border-none outline-none">
               Make Reservation
             </button>
           </form>
