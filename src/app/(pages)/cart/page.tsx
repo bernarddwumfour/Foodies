@@ -5,7 +5,7 @@ import Cartitem from './(components)/Cartitem';
 
 
 
-const page = () => {
+const Cartpage = () => {
   const {cart} = useContext(Appcontext)
   return (
     <main>
@@ -19,4 +19,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Cartpage
